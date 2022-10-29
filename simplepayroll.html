@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Simple Payroll</title>
+    </head>
+    <body onload="initEmployeeList()">
+        
+        <p><a href="Main.html">Back to Home</a></p>
+        <div class="wrapper">
+            <h1>Simple Payroll</h1>
+            <div class="containerA">
+                <label for="employeeName">Employee Name</label>
+                <input type="text" id="employeeName">
+                <label for="daysWorked">Days Worked</label>
+                <input type="number" id="daysWorked">
+                <label for="dailyRate">Daily Rate</label>
+                <input type="number" id="dailyRate">
+                <label for="deductionAmount">Deduction Amount</label>
+                <input type="number" id="deductionAmount">
+            <div class="containerButtonA">
+                <button onclick="addEmployee()">Add</button>
+            </div>
+            <div class="containerB">
+                <label for="employeeCount">Employee Count</label>
+                <input type="number" id="numberEmployee" readonly>
+                <label for="removeEmployee">Remove Employee</label>
+                <input type="number" id="removeEmployee"> 
+            </div>
+            <div class="containerButtonB">
+                <button onclick="removeEmployee()">Remove</button>
+                <button onclick="removeAll()">Remove All</button>
+            </div>
+            </div class="table">
+                <p id="employeeList"></p>
+            </div>
+        </div>
+    <!--Stylesheet-->
+        <style>
+            body{
+                background-color: dodgerblue;
+            }
+            h1{
+                font-family: Helvetica;
+                text-align: center;
+                color: white;
+            }
+            .containerA{
+                text-align: center;
+                padding: 30px;
+            }
+            .containerButtonA{
+                padding-top: 20px;
+            }
+            .containerB{
+                padding: 30px;
+            }
+            .containerC{
+                padding: 30px;
+                text-align: center;
+            }
+            label{
+                font-size: large;
+                font-family: Helvetica;
+                color: white;
+                font-weight: bold;
+            }
+            input{
+                padding: 5px;
+                font-size: large;
+                margin-right: 10px;
+            }
+            button{
+                padding: 5px;
+                width: 100px;
+                border-radius: 10px;
+                border: 2px solid lightgray;
+                outline: none;
+                transition: 0.5s;
+            }
+            button:hover{
+                background-color: dodgerblue;
+                color: white;
+            }
+            th, td, tfoot{
+                border: 1px solid;
+                padding-left: 50px;
+                padding-right: 50px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                font-family: Helvetica;
+            }
+            th{
+                font-size: large;
+                background-color: lightskyblue;
+            }
+            td{
+                background-color: white;
+            }
+            a{
+                color: white;
+            }
+
+        </style>
+    <!--Script-->
+        <script>       
+            const employeeName = document.getElementById("employeeName")
+            const daysWorked = document.getElementById("daysWorked")
+            const dailyRate = document.getElementById("dailyRate")
+            const deductionAmount = document.getElementById("deductionAmount")
+            const employeeCount = document.getElementById("numberEmployee")
+            const removeEmp = document.getElementById("removeEmployee")
+            var employee = []
+
+            function initEmployeeList(){
+                empList=[]
+                employeeCount.value = empList.length
+                document.getElementById("employeeList").innerHTML= ""
+                }
+
+            function addEmployee(){
+                var employee = {
+                    name: "",
+                    days: 1,
+                    rate: 1,
+                    deduction: 1,
+                    gross: 1,
+                    net: 1
+                }
+                employee.name = employeeName.value
+                employee.days = daysWorked.value
+                employee.rate = dailyRate.value
+                employee.deduction = deductionAmount.value
+                employee.gross = employee.days * employee.rate
+                employee.net = employee.gross - employee.deduction
+
+                console.log(employee)
+                empList.push(employee)
+                employeeCount.value = empList.length
+                showList();
+            }
+
+            function removeEmployee(){
+                var employeeNo = removeEmp.value
+                var toDelete;
+
+                toDelete = confirm("Delete item no. "+employeeNo+"?")
+                if(toDelete){
+                empList.splice(employeeNo-1,1)
+                    employeeCount.value = empList.length
+                    showList()
+                }
+            }
+            function removeAll(){
+                var toDelete;
+
+                toDelete = confirm("Are you sure you want to remove all Employees?")
+                if(toDelete){
+                    initEmployeeList()
+                }
+            }
+            function showList(){
+                var theader = "<thead>"
+                    +"<tr>"
+                    +'<th>No.</th>'
+                    +'<th>Employee Name'
+                    +'<th>Days Worked</th>'
+                    +'<th>Daily Rate</th>'
+                    +'<th>Gross Pay</th>'
+                    +'<th>Deduction Amount</th>'
+                    +'<th>Net Pay</th>'
+                    +"</tr>"
+                    +"</thead>"
+                
+                var tbody = ''
+                for(let i = 0;i < empList.length; i++){
+                tbody += "<tr>"
+                    + '<td>'+(i+1)+'</td>'
+                    + '<td>'+empList[i].name+'</td>'
+                    + '<td>'+empList[i].days+'</td>'
+                    + '<td>'+empList[i].rate+'</td>'
+                    + '<td>'+empList[i].gross+'</td>'
+                    + '<td>'+empList[i].deduction+'</td>'
+                    + '<td>'+empList[i].net+'</td>'
+                    + '</tr>'
+                }
+                    tfooter ="<tfoot>";
+                    tfooter+="<tr>";
+                    tfooter+='<th></th>';
+                    tfooter+='<th style="text-align:left"></th>';
+                    tfooter+='<th></th>';
+                    tfooter+='<th></th>';
+                    tfooter+='<th></th>';
+                    tfooter+='<th></th>';
+                    tfooter+='<th></th>';
+                    tfooter+="</tr>";
+                    tfooter+="</tfoot>";
+
+                document.getElementById("employeeList").innerHTML="<table>"+theader+tbody+"</table>"
+                }                     
+        </script>
+    </body>
+</html>

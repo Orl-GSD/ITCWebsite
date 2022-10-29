@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Simple Computations in JavaScript</title>
+</head>
+    <body>
+        <p><a href="Main.html">Back to Home</a></p>
+        <div class="wrapperA">
+            <div class="header">
+                <h3>Celsius-Fahrenheit Converter</h3>
+            </div>
+            <div class="container">
+                <label for="celsius">Celsius ( C )</label>
+                <input type="number" id="celsius" oninput="celToFar()">
+            </div>
+            <div class="container">
+                <label for="fahrenheit">Fahrenheit ( F )</label>
+                <input type="number" id="fahrenheit" oninput="farToCel()">
+            </div>
+        </div>
+
+        <div class="wrapperB">
+            <div class="header">
+                <h3>Meter-Feet Converter</h3>
+            </div>
+            <div class="container">
+                <label for="meters">Meters ( m )</label>
+                <input type="number" id="meters" oninput="mToFt()">
+            </div>
+            <div class="container">
+                <label for="feet">Feet ( ft )</label>
+                <input type="number" id="feet" oninput="ftToM()">
+            </div>
+        </div>
+
+    <!--Style-->
+        <style>
+            body{
+                background-color: dodgerblue;
+            }
+
+            .wrapperA{
+                width: 450px;
+                background-color: white;
+                padding: 70px 40px;
+                left: 100px;
+                top: 100px;
+                position: absolute;
+                box-shadow: 0 20px 25px rgb(22, 102, 182);
+                border-radius: 10px;
+                display: inline;
+                justify-content: space-between;
+            }
+
+            .wrapperB{
+                width: 450px;
+                background-color: white;
+                padding: 90px 40px;
+                left: 750px;
+                top: 100px;
+                position: absolute;
+                box-shadow: 0 20px 25px rgb(22, 102, 182);
+                border-radius: 10px;
+                display: inline;
+                justify-content: space-between;
+            }
+
+            .header{
+                font-family: Helvetica;
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            .container{
+                width: 45%;
+                padding: 20px;
+            }
+
+            label{
+                font-family: Helvetica;
+                font-size: large;
+            }
+
+            input{
+                width: 400px;
+                height: 50px;
+                border-radius: 5px;
+                border: 2px solid lightgray;
+                outline: none;
+                margin-top: 8px;
+                padding: 0 10px;
+                font-size: large;
+                transition: 0.5s;
+            }
+
+            input:focus{
+                border: 2px solid dodgerblue;
+            }
+            a{
+                color: white;
+            }
+        </style>
+
+    <!--Script-->
+        <script>
+            let celsius = document.getElementById("celsius");
+            let fahrenheit = document.getElementById("fahrenheit");
+
+            function celToFar(){
+            let output = (parseFloat(celsius.value) * 9/5) + 32;
+            fahrenheit.value = parseFloat(output.toFixed(2));
+            }
+
+            function farToCel(){
+            let output = (parseFloat(fahrenheit.value) - 32) * 5/9;
+            celsius.value = parseFloat(output.toFixed(2));
+            }
+
+            let meter = document.getElementById("meters");
+            let feet = document.getElementById("feet");
+
+            function mToFt(){
+            let output = parseFloat(meters.value) * 3.281;
+            feet.value = parseFloat(output.toFixed(2));
+            }
+
+            function ftToM(){
+            let output = parseFloat(feet.value) / 3.281;
+            meters.value = parseFloat(output.toFixed(2));
+            }
+        </script>
+    </body>
+</html>

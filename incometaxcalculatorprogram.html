@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Income Tax Calculator</title>
+    </head>
+    <body>
+        <p><a href="Main.html">Back to Home</a></p>
+        <div class="wrapper">
+            <div class="header">
+                <h3>Income Tax Calculator</h3>
+            </div>
+            <div class="containerInput">
+                <label for="taxableIncome">Taxable Income</label>
+                <input type="number" id="taxableIncome">
+            </div>
+            <div class="button">
+                <button onclick="incomeTax()">Submit</button>
+            </div>
+            <div class="containerResult">
+                <label for="incometax">Income Tax</label>
+                <input type="number" id="result" readonly>
+            </div>
+        </div>
+        
+        <!--Style-->
+        <style>
+            body{
+                background-color: dodgerblue;
+            }
+
+            .wrapper{
+                width: 450px;
+                background-color: white;
+                padding: 70px 40px;
+                left: 100px;
+                top: 100px;
+                position: absolute;
+                box-shadow: 0 20px 25px rgb(22, 102, 182);
+                border-radius: 10px;
+                display: block;
+                justify-content: space-between;
+            }
+
+            .header{
+                font-family: Helvetica;
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            .containerInput{
+                width: 45%;
+                padding: 10px;
+            }
+            
+            .containerResult{
+                width: 45%;
+                padding: 10px;
+            }
+            
+            label{
+            font-family: Helvetica;
+            font-size: large;
+            }
+            
+            input{
+            width: 400px;
+            height: 50px;
+            border-radius: 5px;
+            border: 2px solid lightgray;
+            outline: none;
+            margin-top: 8px;
+            padding: 0 10px;
+            font-size: large;
+            }
+
+            .button{
+            width: 45%;
+            padding: 5px;
+            text-align: center;
+            }
+            
+            button{
+                padding: 10px;
+                width: 100px;
+                margin-left: 165px;
+                border: 2px solid lightgray;
+                border-radius: 5px;
+                outline: none;
+                transition: 0.5s
+                }
+                
+            button:hover{
+            border: 2px solid dodgerblue;
+            background-color: dodgerblue;
+            color: white;
+            }
+            a{
+                color: white;
+            }
+        </style>
+
+        <!--Script-->
+        <script>
+            let taxableIncome = document.getElementById("taxableIncome");
+            let result = document.getElementById("result");
+            let inTax;
+
+        function incomeTax(){
+                if (taxableIncome.value <= 250000) {
+                    result.value = 0;
+                
+                } else if (taxableIncome.value > 250000 && taxableIncome.value <= 400000) {
+                    inTax = (taxableIncome.value - 250000) * .20;
+                    result.value = inTax;
+
+                } else if (taxableIncome.value > 400000 && taxableIncome.value <= 800000) {
+                    inTax = ((taxableIncome.value - 400000) * .25) + 30000;
+                    result.value = inTax;
+
+                } else if (taxableIncome.value > 800000 && taxableIncome.value <= 2000000) {
+                    inTax = ((taxableIncome.value - 800000) * .30) + 130000;
+                    result.value = inTax;
+
+                } else if (taxableIncome.value > 2000000 && taxableIncome.value <= 8000000) {
+                    inTax = ((taxableIncome.value - 2000000) * .32) + 490000;
+                    result.value = inTax;
+                } else if ((taxableIncome.value > 8000000)) {
+                    inTax = ((taxableIncome.value - 8000000) * .35) + 2410000;
+                    result.value = inTax;
+                }
+            }
+        </script>
+    </body>
+</html>

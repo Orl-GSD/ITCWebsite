@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Nth Factorial</title>
+
+</head>
+    <body>
+        <p><a href="Main.html">Back to Home</a></p>
+        <div class="wrapper">
+            <div class="header">
+                <h3>Nth Factorial, Sum, and Average</h3>
+            </div>
+            <div class="containerInput">
+                <label for="number">Input Number</label>
+                <input type="number" id="number">
+            </div>
+            <div class="button">
+                <button onclick="factorialNumber()">Submit</button>
+            </div>
+            <div class="containerResults">
+                <label for="factorial">Factorial</label>
+                <input type="number" id="factorial" readonly>
+            </div>
+            <div class="containerResults">
+                <label for="sum">Sum of Numbers</label>
+                <input type="number" id="sum" readonly>
+            </div>
+            <div class="containerResults">
+                <label for="average">Average of Numbers</label>
+                <input type="number" id="average" readonly>
+            </div>
+        </div>
+    
+        <!--Style-->
+        <style>
+            body{
+                background-color: dodgerblue;
+            }
+            
+            .wrapper{
+            width: 450px;
+            background-color: white;
+            padding: 70px 40px;
+            left: 100px;
+            top: 100px;
+            position: absolute;
+            box-shadow: 0 20px 25px rgb(22, 102, 182);
+            border-radius: 10px;
+            display: block;
+            justify-content: space-between;
+            }
+            
+            .header{
+            font-family: Helvetica;
+            font-size: 2rem;
+            text-align: center;
+            }
+            
+            .button{
+            width: 45%;
+            padding: 5px;
+            text-align: center;
+            }
+            
+            button{
+            padding: 10px;
+            width: 100px;
+            margin-left: 165px;
+            border: 2px solid lightgray;
+            border-radius: 5px;
+            outline: none;
+            transition: 0.5s
+            }
+            
+            button:hover{
+            border: 2px solid dodgerblue;
+            background-color: dodgerblue;
+            color: white;
+            }
+            
+            .containerInput{
+                width: 45%;
+                padding: 10px;
+            }
+            
+            .containerResults{
+                width: 45%;
+                padding: 10px;
+            }
+            
+            label{
+            font-family: Helvetica;
+            font-size: large;
+            }
+            
+            input{
+            width: 400px;
+            height: 50px;
+            border-radius: 5px;
+            border: 2px solid lightgray;
+            outline: none;
+            margin-top: 8px;
+            padding: 0 10px;
+            font-size: large;
+            }
+
+            a{
+                color: white;
+            }
+        </style>
+
+        <script>
+            let number = document.getElementById("number");
+            let factorial = document.getElementById("factorial");
+            let sum = document.getElementById("sum");
+            let average = document.getElementById("average");
+
+            /*While Loop*/
+            function factorialNumber(){
+                var fact = 1;
+                var i = 1;
+                
+                while (i <= number.value) {
+                    fact = fact * i;
+                    i++;
+                }
+
+                factorial.value = fact;        
+
+            /*Do While Loop*/
+                var j = 1;
+                var add1 = 0;
+                
+                do{
+                    add1 = add1 + j;
+                    j++;
+                }
+                while (j <= number.value);
+                
+                sum.value = add1;
+
+            /*For Loop*/
+                var add2 = 0;
+                
+                for(var k = 0; k <= number.value; k++) {
+                    add2 = add2 + k;
+                    ave = add2/number.value;
+                }
+
+                average.value = ave;
+            }
+        </script>
+    </body>
+</html>
